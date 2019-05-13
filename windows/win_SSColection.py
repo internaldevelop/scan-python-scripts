@@ -1,7 +1,7 @@
 #!/usr/bin/python2.7
 #coding=utf-8
 
-import os,time
+import time
 import socket
 
 resultDict={}
@@ -9,40 +9,40 @@ resultDict={}
 def osTest():
 
     print "---System Checking---\n\r"
-    import sysProcess
+    from windows import sysProcess
     sysProcess.process(resultDict)
 
 def serviceTest():
     print "---Service Checking---\n\r"
-    import serviceProcess
+    from windows import serviceProcess
     serviceProcess.process(resultDict)
 
 def userTest():
     print "---User Account Checking---\n\r"
-    import userProcess
+    from windows import userProcess
     userProcess.process(resultDict)
 
 def pwdTest():
     print "---Password Security Checking---\n\r"
-    import pwdProcess
+    from windows import pwdProcess
     pwdProcess.process(resultDict)
 
 
 def firewallTest():
     print "---Firewall Config Checking---\n\r"
-    import firewallProcess
+    from windows import firewallProcess
     firewallProcess.process(resultDict)
 
 
 def fileTest():
     print "---File System Protection Checking---\n\r"
-    import fileProcess
+    from windows import fileProcess
     fileProcess.process(resultDict)
 
 
 def netTest():
     print "---Network Config Checking---\n\r"
-    import netProcess
+    from windows import netProcess
     netProcess.process(resultDict)
 
 def saveResult(r):
