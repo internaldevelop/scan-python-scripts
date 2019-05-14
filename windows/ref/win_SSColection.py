@@ -9,40 +9,40 @@ resultDict={}
 def osTest():
 
     print "---System Checking---\n\r"
-    from windows import sysProcess
-    sysProcess.process(resultDict)
+    from windows import system_info
+    system_info.process(resultDict)
 
 def serviceTest():
     print "---Service Checking---\n\r"
-    from windows import serviceProcess
+    from windows.ref import serviceProcess
     serviceProcess.process(resultDict)
 
 def userTest():
     print "---User Account Checking---\n\r"
-    from windows import userProcess
+    from windows.ref import userProcess
     userProcess.process(resultDict)
 
 def pwdTest():
     print "---Password Security Checking---\n\r"
-    from windows import pwdProcess
-    pwdProcess.process(resultDict)
+    from windows import pwd_policy
+    pwd_policy.process(resultDict)
 
 
 def firewallTest():
     print "---Firewall Config Checking---\n\r"
-    from windows import firewallProcess
-    firewallProcess.process(resultDict)
+    from windows import firewall_mode
+    firewall_mode.process(resultDict)
 
 
 def fileTest():
     print "---File System Protection Checking---\n\r"
-    from windows import fileProcess
+    from windows.ref import fileProcess
     fileProcess.process(resultDict)
 
 
 def netTest():
     print "---Network Config Checking---\n\r"
-    from windows import netProcess
+    from windows.ref import netProcess
     netProcess.process(resultDict)
 
 def saveResult(r):

@@ -2,7 +2,8 @@
 #coding=utf-8
 
 
-from windows import usbDog, win_SSColection as Colection
+from windows import usbDog
+from windows.ref import win_SSColection as Colection
 import codecs
 
 def ReadFile(filePath,encoding="utf-8"):
