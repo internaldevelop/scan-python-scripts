@@ -1,6 +1,7 @@
 #!/usr/bin/python3.7
 # coding=utf-8
 import os
+import json
 
 
 def getValue(t):
@@ -29,9 +30,10 @@ def process(info):
     start_index = 14
     port_state = getValue(line_array[start_index])
     if port_state.find("当前没有在所有网络接口上打开的端口") >= 0:
-        info["Firewall All-Open Ports Exist"] = False
+        info["Firewall All-Open Ports Exist"] = 'false'
+        info["All-Open Ports List"] = []
     else:
-        info["Firewall All-Open Ports Exist"] = True
+        info["Firewall All-Open Ports Exist"] = 'true'
         end_index = start_index
         for index in range(start_index, len(line_array)):
             if line_array[index][0] == ' ':
@@ -42,7 +44,7 @@ def process(info):
     os.remove('firewall.log')
 
     # 用于测试
-    info["Firewall All-Open Ports Exist"] = True
+    info["Firewall All-Open Ports Exist"] = 'true'
     info["All-Open Ports List"] = [
         "9019    UDP    任何    (null)\n",
         "8080    TCP    任何    (null)\n",
@@ -53,11 +55,11 @@ def process(info):
 
 def analyze(result):
     info = result['info']
-    if info['Firewall All-Open Ports Exist']:
+    if info['Firewall All-Open Ports Exist'] == 'true':
         result['risk_level'] = 2
         result['risk_desc'] = '端口规则存在安全风险\n'
         result['risk_desc'] += '端口   协议  版本  程序\n'
-        port_list = result["All-Open Ports List"]
+        port_list = info["All-Open Ports List"]
         for index in range(0, len(port_list)):
             result['risk_desc'] += port_list[index]
         result['solution'] = '请检查防火墙的端口规则，对需要限制的端口运行设置命令：netsh firewall add/set portopening。'
@@ -73,6 +75,6 @@ if __name__ == '__main__':
     info = {}
     process(info)
 
-    result = {'info', info}
+    result = {'info': info}
     analyze(result)
     print(result)

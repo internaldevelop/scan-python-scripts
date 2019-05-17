@@ -1,6 +1,7 @@
 #!/usr/bin/python3.7
 # coding=utf-8
 import os
+import json
 
 
 def getValue(t):
@@ -42,7 +43,7 @@ def analyze(result):
         result['risk_level'] = 3
         result['risk_desc'] = '防火墙未开启，系统不能有效保障网络安全，也不能对网络存取和访问进行有效的监控审计，系统和用户的信息资料有较大的外泄风险。'
         result['solution'] = '请使用如下Windows命令开启防火墙：\n\tnetsh firewall set opmode mode=enable'
-    elif result['Firewall Notification mode'] != '启用':
+    elif info['Firewall Notification mode'] != '启用':
         result['risk_level'] = 1
         result['risk_desc'] = '防火墙未开启通知模式，在阻止应用访问网络时，可能会给用户带来困扰；同时，开启通知模式也有利于用户了解当前系统可能存在的安全隐患。'
         result['solution'] = '请使用如下Windows命令开启防火墙：\n\tnetsh firewall set notifications enable'
@@ -58,6 +59,6 @@ if __name__ == '__main__':
     info = {}
     process(info)
 
-    result = {'info', info}
+    result = {'info': info}
     analyze(result)
     print(result)
