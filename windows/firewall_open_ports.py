@@ -44,11 +44,11 @@ def process(info):
     os.remove('firewall.log')
 
     # 用于测试
-    info["Firewall All-Open Ports Exist"] = 'true'
-    info["All-Open Ports List"] = [
-        "9019    UDP    任何    (null)\n",
-        "8080    TCP    任何    (null)\n",
-        "245     UDP    任何    (null)\n", ]
+    # info["Firewall All-Open Ports Exist"] = 'true'
+    # info["All-Open Ports List"] = [
+    #     "9019    UDP    任何    (null)\n",
+    #     "8080    TCP    任何    (null)\n",
+    #     "245     UDP    任何    (null)\n", ]
 
     return
 

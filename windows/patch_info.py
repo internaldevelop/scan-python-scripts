@@ -18,6 +18,8 @@ def noPatch(result):
     result['risk_desc'] = '未安装系统补丁，有较严重的安全隐患'
     result['solution'] = '配置Windows Update，连接互联网，更新系统修补程序。'
 
+    return
+
 
 def process(result):
     output = os.system("systeminfo >system_info.log")

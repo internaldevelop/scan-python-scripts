@@ -19,8 +19,8 @@ def serviceTest():
 
 def userTest():
     print "---User Account Checking---\n\r"
-    from windows.ref import userProcess
-    userProcess.process(resultDict)
+    from windows import account_security
+    account_security.process(resultDict)
 
 def pwdTest():
     print "---Password Security Checking---\n\r"
@@ -42,8 +42,8 @@ def fileTest():
 
 def netTest():
     print "---Network Config Checking---\n\r"
-    from windows.ref import netProcess
-    netProcess.process(resultDict)
+    from windows import tcpip_service
+    tcpip_service.process(resultDict)
 
 def saveResult(r):
     import json,time,sys
