@@ -10,11 +10,11 @@ import os
 # SCRIPT_USAGE = 2    # 系统事件审计策略
 # SCRIPT_USAGE = 3    # 对象访问事件审计策略
 # SCRIPT_USAGE = 4  # 特权使用事件审计策略
-SCRIPT_USAGE = 5    # 策略更改事件审计策略
+# SCRIPT_USAGE = 5    # 策略更改事件审计策略
 # SCRIPT_USAGE = 6    # 账户管理事件审计策略
 # SCRIPT_USAGE = 7    # 过程追踪事件审计策略
 # SCRIPT_USAGE = 8    # 目录服务事件审计策略
-# SCRIPT_USAGE = 9    # 账户登录事件审计策略
+SCRIPT_USAGE = 9    # 账户登录事件审计策略
 
 INVALID = '-1'
 
@@ -78,6 +78,10 @@ def check_audit(audit_key, audit_type):
         result['risk_level'] = 1
         result['risk_desc'] = f'系统只配置了{audit_type}的失败事件审计'
         result['solution'] = f'设置{audit_key}的审计策略为：成功事件+失败事件。'
+
+    if result['risk_level'] != 0:
+        result['solution'] += '审计安全设置的位置是：Computer Configuration\Windows Settings\Security Settings\Local ' \
+                              'Policies\Audit Policy '
 
 
 # 检查审计策略的设定值：

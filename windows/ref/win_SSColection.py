@@ -36,8 +36,8 @@ def firewallTest():
 
 def fileTest():
     print "---File System Protection Checking---\n\r"
-    from windows.ref import fileProcess
-    fileProcess.process(resultDict)
+    from windows.ref import file_share
+    file_share.process(resultDict)
 
 
 def netTest():
