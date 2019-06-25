@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+# coding=utf-8
 import os
 import platform
 import json
@@ -21,12 +23,12 @@ def process(result):
     # 如果读取不到 PermitRootLogin 开头的行，说明配置文件中这行被注释了
     # 按照 PermitRootLogin yes 做错误处理
     if len(permit) == 0:
-        permit = ["PermitRootLogin yes"]
-
-    info['PermitRootLogin'] = permit[0]
-
-    # 分割
-    split_permit = permit[0].split()
+        info['PermitRootLogin'] = "Not configured"
+        split_permit = ["PermitRootLogin", "yes"]
+    else:
+        info['PermitRootLogin'] = permit[0]
+        # 分割
+        split_permit = permit[0].split()
 
     # 判断是否允许root远程登录
     if split_permit[1] == "yes":
