@@ -2,6 +2,7 @@ import os
 import platform
 import json
 
+# for test github user login
 
 def get_os_info():
     os_info = platform.uname()._asdict()
